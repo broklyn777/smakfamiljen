@@ -47,7 +47,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <Link href="/" className="brand"><span className="brand-mark">S</span><span>Smakfamiljen</span></Link>
-        <nav className="nav-links" aria-label="Huvudnavigation"><a href="#recept">Alla recept</a><a href="#om">Om Smakfamiljen</a></nav>
+        <nav className="nav-links" aria-label="Huvudnavigation"><a href="#recept">Alla recept</a><Link href="/veckomeny">Veckomeny</Link><a href="#om">Om Smakfamiljen</a></nav>
         <button className="saved-button" aria-label="Sparade recept"><span>♡</span><span className="saved-label">Sparade recept</span></button>
       </header>
 
