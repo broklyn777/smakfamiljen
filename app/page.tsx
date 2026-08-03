@@ -48,6 +48,7 @@ export default function Home() {
       <header className="site-header">
         <Link href="/" className="brand"><span className="brand-mark">S</span><span>Smakfamiljen</span></Link>
         <nav className="nav-links" aria-label="Huvudnavigation"><a href="#recept">Alla recept</a><Link href="/veckomeny">Veckomeny</Link><a href="#om">Om Smakfamiljen</a></nav>
+        <Link href="/veckomeny" className="mobile-week-link"><span aria-hidden="true">▦</span> Veckomeny</Link>
         <button className="saved-button" aria-label="Sparade recept"><span>♡</span><span className="saved-label">Sparade recept</span></button>
       </header>
 
