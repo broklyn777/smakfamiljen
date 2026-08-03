@@ -17,10 +17,23 @@ export function RecipePicker({ open, onClose, onSelect }: Props) {
   useEffect(() => {
     if (!open) return;
     previousFocus.current = document.activeElement as HTMLElement;
-    window.setTimeout(() => inputRef.current?.focus(), 0);
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+    const shouldFocusSearch = window.matchMedia("(min-width: 621px)").matches;
+    const focusTimer = shouldFocusSearch ? window.setTimeout(() => inputRef.current?.focus(), 0) : null;
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKeyDown);
-    return () => { window.removeEventListener("keydown", onKeyDown); previousFocus.current?.focus(); };
+    return () => {
+      if (focusTimer !== null) window.clearTimeout(focusTimer);
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
+      previousFocus.current?.focus();
+    };
   }, [open, onClose]);
 
   const matches = useMemo(() => recipes.filter((recipe) => {

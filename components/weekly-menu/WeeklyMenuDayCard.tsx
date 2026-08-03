@@ -32,7 +32,7 @@ export function WeeklyMenuDayCard({ dayName, day, recipe, duplicate, onChoose, o
           <label className="wm-note" data-note={day.note ?? ""}><span>Anteckning</span><input value={day.note ?? ""} onChange={(event) => onNote(event.target.value)} placeholder="T.ex. träning 18.00" /></label>
           <div className="wm-day-actions"><Link href={`/recipes/${recipe.slug}?portioner=${day.servings}`}>Öppna recept</Link><button onClick={onChoose}>Byt</button><button onClick={onRemove}>Ta bort</button></div>
         </div>
-      </> : <div className="wm-empty-content"><span>+</span><h2>Ingen maträtt vald</h2><button onClick={onChoose}>Välj recept</button></div>}
+      </> : <button type="button" className="wm-empty-content" onClick={onChoose} aria-label={`Välj recept för ${dayName}`}><span aria-hidden="true">+</span><h2>Ingen maträtt vald</h2></button>}
     </article>
   );
 }
